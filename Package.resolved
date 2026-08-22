@@ -1,0 +1,33 @@
+{
+  "originHash" : "7fb7b3620864f4632ec8e64cf6e975f698abe9a58bd7e72c30abf48fc68b45e0",
+  "pins" : [
+    {
+      "identity" : "cas-external-foundations",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KMessina1/CAS-External-Foundations.git",
+      "state" : {
+        "revision" : "3e78af3348392292e0ca0d2fd46f0885093aa8ab",
+        "version" : "1.1.5"
+      }
+    },
+    {
+      "identity" : "cas-themesupport",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KMessina1/CAS-ThemeSupport.git",
+      "state" : {
+        "revision" : "779d9d6e4a058f1aaa284300c32568797ee9f901",
+        "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "grdb.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDB.swift.git",
+      "state" : {
+        "revision" : "2cf6c756e1e5ef6901ebae16576a7e4e4b834622",
+        "version" : "6.29.3"
+      }
+    }
+  ],
+  "version" : 3
+}
