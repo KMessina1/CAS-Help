@@ -24,9 +24,10 @@ Reusable SwiftUI help viewer support for apps that store help content in a GRDB-
    HelpView(
        dbQueue: dbQueue_Help,
        appVersion: AppInfo.version,
-       companyURL: UserDefaults.standard.string(forKey: "appInfo.Company.URL") ?? "",
-       helpTextSizeKey: "app.settings.helpTextSize"
+       companyURL: UserDefaults.standard.string(forKey: "appInfo.Company.URL") ?? ""
    )
    ```
 
 The package owns the reusable Help UI and record model. The app remains responsible for bundling its `Help.db` resource and opening the database queue used by `HelpView`.
+
+`HelpView` stores its text size preference internally with `@AppStorage("app.settings.helpTextSize")` and defaults to `18.0`.

@@ -2,8 +2,8 @@
      File: HelpView.swift
    Author: Kevin Messina
   Created: 6/10/24
- Modified: 08/22/2026 05:08 PM EDT
-  Version: 4
+ Modified: 08/22/2026 05:35 PM EDT
+  Version: 5
    Source: CODEX: (GPT-5) 🤖AI Code a portion or all of this code.
 
 ©2026 Creative App Solutions, LLC. - All Rights Reserved.
@@ -23,7 +23,7 @@ public struct HelpView: View {
     private let dbQueue: DatabaseQueue?
     private let appVersion: String
     private let companyURL: String
-    private let helpTextSizeKey: String
+    @AppStorage("app.settings.helpTextSize") private var storedTextSize: Double = 18.0
     
     // Records
     @State var helpItems:[HelpItem] = []
@@ -39,13 +39,11 @@ public struct HelpView: View {
     public init(
         dbQueue: DatabaseQueue? = nil,
         appVersion: String = "",
-        companyURL: String = "",
-        helpTextSizeKey: String = "app.settings.helpTextSize"
+        companyURL: String = ""
     ) {
         self.dbQueue = dbQueue
         self.appVersion = appVersion
         self.companyURL = companyURL
-        self.helpTextSizeKey = helpTextSizeKey
     }
 
     public var body: some View {
@@ -109,8 +107,7 @@ public struct HelpView: View {
                         .presentationCompactAdaptation(.popover) // Optional: Force popover on compact sizes
                 }
                 .onChange(of: textSize) {
-                    UserDefaults.standard.set(textSize, forKey: helpTextSizeKey)
-                    UserDefaults.standard.synchronize()
+                    storedTextSize = Double(textSize)
                 }
 
                 Menu {
@@ -141,10 +138,7 @@ public struct HelpView: View {
             }
         }
         .onAppear {
-            textSize = UserDefaults.standard.double(forKey: helpTextSizeKey)
-            if textSize == 0 {
-                textSize = 18.0
-            }
+            textSize = CGFloat(storedTextSize)
             
             loadBasicData()
         }
