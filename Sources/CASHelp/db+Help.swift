@@ -2,8 +2,8 @@
      File: db+Help.swift
    Author: Kevin Messina
   Created: 6/9/24
- Modified: 08/22/2026 05:04 PM EDT
-  Version: 1
+ Modified: 11/01/2026 11:54 AM EST
+  Version: 2
    Source: CODEX: (GPT-5) 🤖AI Code a portion or all of this code.
 
 ©2026 Creative App Solutions, LLC. - All Rights Reserved.
@@ -47,6 +47,14 @@ struct HelpItem: Codable, Equatable, FetchableRecord, MutablePersistableRecord {
         static let notes = Column(CodingKeys.notes)
     }
     
+    static func ordered(_ items: [HelpItem]) -> [HelpItem] {
+        items.sorted {
+            if $0.title != $1.title { return $0.title < $1.title }
+            if $0.sortOrder != $1.sortOrder { return $0.sortOrder < $1.sortOrder }
+            return ($0.id ?? Int64.max) < ($1.id ?? Int64.max)
+        }
+    }
+
     mutating func didInsert(with rowID: Int64, for column: String?) {
         id = rowID
     }
